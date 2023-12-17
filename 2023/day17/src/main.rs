@@ -152,10 +152,10 @@ fn astar(map: &Vec<Vec<i128>>) -> i128 {
             return reconstruct(current, &came_from, map)
         }
         for n in neighbours(&current, &height, &width, &came_from) {
-            // println!("current {} {}, neigh: {} {}", current.0, current.1, n.0, n.1);
+            println!("current {} {} (mapval:{} gScore:{}), neigh: {} {} (mapval:{} gScore:{})", current.0, current.1, map[current.0][current.1], gScore[&current], n.0, n.1, map[n.0][n.1], gScore[&n]);
             let tentative_gScore: i128 = gScore[&current] + map[n.0][n.1];
             if tentative_gScore < gScore[&n] {
-                // println!("    updated with score {tentative_gScore}");
+                println!("    n updated with score {tentative_gScore}");
                 came_from.insert(n, current);
                 gScore.insert(n, tentative_gScore);
                 fScore.insert(n, tentative_gScore + h(&n, &height, &width));
